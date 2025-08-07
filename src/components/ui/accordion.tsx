@@ -34,8 +34,7 @@ const AccordionTrigger = React.forwardRef<
       {...props}
     >
       {children}
-      {/* This was the fix from last time - it seems it didn't get applied. Let's re-apply it. */}
-      {!props.asChild && <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />}
+      <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ))
