@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ChevronDown } from "lucide-react";
 import type { AqiDataPoint } from "@/lib/aqi-data";
 import { getAiSummary } from "@/app/actions";
 
@@ -45,7 +45,7 @@ export function AiSummary({ data }: AiSummaryProps) {
         </p>
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
-            <AccordionTrigger asChild>
+            <AccordionTrigger>
               <Button onClick={handleGenerateSummary} disabled={isLoading} className="w-full">
                 {isLoading ? "Generating..." : "Generate 24-Hour Summary"}
               </Button>
