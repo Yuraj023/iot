@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Sparkles, ChevronDown } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import type { AqiDataPoint } from "@/lib/aqi-data";
 import { getAiSummary } from "@/app/actions";
 
@@ -19,6 +19,7 @@ export function AiSummary({ data }: AiSummaryProps) {
   const [error, setError] = useState("");
 
   const handleGenerateSummary = async () => {
+    if (isLoading) return;
     setIsLoading(true);
     setError("");
     setSummary("");
@@ -45,10 +46,10 @@ export function AiSummary({ data }: AiSummaryProps) {
         </p>
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
-            <AccordionTrigger>
-              <Button onClick={handleGenerateSummary} disabled={isLoading} className="w-full">
-                {isLoading ? "Generating..." : "Generate 24-Hour Summary"}
-              </Button>
+            <AccordionTrigger onClick={handleGenerateSummary} disabled={isLoading}>
+                <div className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+                  {isLoading ? "Generating..." : "Generate 24-Hour Summary"}
+                </div>
             </AccordionTrigger>
             <AccordionContent className="pt-4">
               {isLoading && (
